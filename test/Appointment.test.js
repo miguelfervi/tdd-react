@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Appointment } from '../src/Appointment';
+import { Appointment, AppointmentsDaysView } from '../src/Appointment';
 const { it, expect, beforeEach } = require('@jest/globals');
 
 describe('Appointment', () => {
@@ -23,5 +23,20 @@ describe('Appointment', () => {
     customer = { firstName: 'Jordan' };
     render(<Appointment customer={customer}></Appointment>);
     expect(container.textContent).toMatch('Jordan');
+  });
+});
+
+describe('AppointmentsDaysView', () => {
+  let container;
+
+  beforeEach(() => {
+    container = document.createElement('div');
+  });
+
+  const render = (component) => ReactDOM.render(component, container);
+
+  it('renders a div with the right id', () => {
+    render(<AppointmentsDaysView appointments={[]}></AppointmentsDaysView>);
+    expect(container.querySelector('div#appointmentsDayView')).not.toBeNull();
   });
 });
